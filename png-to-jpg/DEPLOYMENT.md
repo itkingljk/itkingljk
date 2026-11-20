@@ -33,7 +33,7 @@ cd ~/apps
 git clone https://github.com/itkingljk/itkingljk.git
 cd itkingljk
 sudo install -d -m 755 /var/www/qingzhuan
-sudo install -m 644 png-to-jpg/index.html png-to-jpg/style.css png-to-jpg/app.js /var/www/qingzhuan/
+sudo install -m 644 png-to-jpg/index.html png-to-jpg/style.css png-to-jpg/app.js png-to-jpg/image-engine.js /var/www/qingzhuan/
 sudo cp png-to-jpg/deploy/nginx.conf /etc/nginx/sites-available/qingzhuan
 sudo nano /etc/nginx/sites-available/qingzhuan
 ```
@@ -88,7 +88,7 @@ sudo /snap/bin/certbot renew --dry-run
 ```sh
 cd ~/apps/itkingljk
 git pull --ff-only
-sudo install -m 644 png-to-jpg/index.html png-to-jpg/style.css png-to-jpg/app.js /var/www/qingzhuan/
+sudo install -m 644 png-to-jpg/index.html png-to-jpg/style.css png-to-jpg/app.js png-to-jpg/image-engine.js /var/www/qingzhuan/
 ```
 
 静态文件更新无需重启应用。
@@ -107,3 +107,12 @@ sudo install -m 644 png-to-jpg/index.html png-to-jpg/style.css png-to-jpg/app.js
 GitHub Pages 分支发布：https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
 Ubuntu Nginx：https://ubuntu.com/server/docs/how-to/web-services/install-nginx/
 Nginx 静态网站：https://nginx.org/en/docs/beginners_guide.html
+
+
+## 指定大小压缩（新增）
+
+在图片处理页选择「图片压缩」，输入每张图片的目标上限并选择 KB 或 MB，随后选择文件。支持 PNG、JPG、WebP，单张和批量均可。目标范围为 1 KB–20 MB（1 KB = 1024 字节）。输出不超过目标，不补齐到精确字节数。
+
+原图已不超过上限时保留原格式和画质；超过上限时输出 JPG，透明背景填白。优先调整画质，无法达标时再缩小尺寸；列表和历史显示实际大小、目标和输出尺寸。所有处理仍在浏览器中完成。动画输入仅作为静态图片处理，不保留动画。
+
+服务器更新时必须同时发布 image-engine.js（新增文件），不能只替换旧的三个文件。

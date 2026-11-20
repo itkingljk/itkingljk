@@ -9,9 +9,16 @@
 ## 使用与部署
 
 - GitHub Pages：按照 [部署说明](DEPLOYMENT.md) 启用 main 分支根目录发布，工具在站点的 png-to-jpg/ 路径。
-- Ubuntu 24.04：只需 Nginx，将 index.html、style.css、app.js 复制到网站根目录；配置模板位于 deploy/nginx.conf。
+- Ubuntu 24.04：只需 Nginx，将 index.html、style.css、app.js、image-engine.js 复制到网站根目录；配置模板位于 deploy/nginx.conf。
 - 离线使用：下载并使用浏览器打开 offline.html。
 
 [查看完整部署步骤](DEPLOYMENT.md)
 
 仓库根目录的个人介绍和研究主页保持原样。
+
+
+## 图片压缩
+
+页面新增「图片压缩」模式，支持 PNG/JPG/WebP、KB/MB 目标上限、单张/批量处理及下载。目标 1 KB–20 MB，优先调画质，必要时缩小尺寸，超出目标的图片输出 JPG；已达标原图保留格式和画质。输出不保证精确等于目标，但成功结果不会超过上限。
+
+部署时请同时复制新增的 image-engine.js。
